@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WrkSense Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="calculator">
+        <h2>WrkSense Potential Value Calculator</h2>
+        <div>
+            <label for="numConsultants">Number of Consultants: <span id="numConsultantsVal">3</span></label>
+            <input type="range" id="numConsultants" min="1" max="100" value="3" step="1">
+        </div>
+        <div>
+            <label for="avgSalary">Average Salary of Consultant: <span id="avgSalaryVal">$100000</span></label>
+            <input type="range" id="avgSalary" min="1000" max="100000" value="5000" step="500">
+        </div>
+        <div>
+            <label for="timeToHire">Average Time to Hire in Days: <span id="timeToHireVal">10</span></label>
+            <input type="range" id="timeToHire" min="1" max="60" value="10" step="1">
+        </div>
+        <div>
+            <label for="avgBillings">Average Billings per Consultant: <span id="avgBillingsVal">$400000</span></label>
+            <input type="range" id="avgBillings" min="2000" max="400000" value="10000" step="1000">
+        </div>
+        <div>
+            <h3>Results</h3>
+            <p>Cost Savings: $<span id="costSavings">0</span></p>
+            <p>Revenue Increased: $<span id="revenueIncreased">0</span></p>
+            <p>Total Potential Value for WrkSense: $<span id="totalValue">0</span></p>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
