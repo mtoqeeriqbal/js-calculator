@@ -1,12 +1,11 @@
 const numConsultants = document.getElementById('numConsultants');
+const numConsultantsInput = document.getElementById('numConsultantsInput');
 const avgSalary = document.getElementById('avgSalary');
+const avgSalaryInput = document.getElementById('avgSalaryInput');
 const timeToHire = document.getElementById('timeToHire');
+const timeToHireInput = document.getElementById('timeToHireInput');
 const avgBillings = document.getElementById('avgBillings');
-
-const numConsultantsVal = document.getElementById('numConsultantsVal');
-const avgSalaryVal = document.getElementById('avgSalaryVal');
-const timeToHireVal = document.getElementById('timeToHireVal');
-const avgBillingsVal = document.getElementById('avgBillingsVal');
+const avgBillingsInput = document.getElementById('avgBillingsInput');
 
 const costSavings = document.getElementById('costSavings');
 const revenueIncreased = document.getElementById('revenueIncreased');
@@ -28,20 +27,32 @@ function calculateResults() {
   totalValue.textContent = totalPotential.toFixed(2);
 }
 
-function updateLabels() {
-  numConsultantsVal.textContent = numConsultants.value;
-  avgSalaryVal.textContent = `$${avgSalary.value}`;
-  timeToHireVal.textContent = timeToHire.value;
-  avgBillingsVal.textContent = `$${avgBillings.value}`;
+function syncValues(e) {
+  const slider = e.target;
+  const input = document.getElementById(slider.id + 'Input');
+  input.value = slider.value;
+  calculateResults();
 }
 
-[numConsultants, avgSalary, timeToHire, avgBillings].forEach((input) => {
-  input.addEventListener('input', () => {
-    updateLabels();
-    calculateResults();
-  });
+function syncSliders(e) {
+  const input = e.target;
+  const slider = document.getElementById(input.id.replace('Input', ''));
+  slider.value = input.value;
+  calculateResults();
+}
+
+[numConsultants, avgSalary, timeToHire, avgBillings].forEach((slider) => {
+  slider.addEventListener('input', syncValues);
+});
+
+[
+  numConsultantsInput,
+  avgSalaryInput,
+  timeToHireInput,
+  avgBillingsInput,
+].forEach((input) => {
+  input.addEventListener('input', syncSliders);
 });
 
 // Initialize
-updateLabels();
 calculateResults();
