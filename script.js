@@ -11,6 +11,10 @@ const costSavings = document.getElementById('costSavings');
 const revenueIncreased = document.getElementById('revenueIncreased');
 const totalValue = document.getElementById('totalValue');
 
+function numberWithCommas(x) {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+}
+
 function calculateResults() {
   const num = parseInt(numConsultants.value);
   const salary = parseFloat(avgSalary.value);
@@ -22,9 +26,9 @@ function calculateResults() {
   const revenueInc = num * billings * 0.1;
   const totalPotential = costSave + revenueInc;
 
-  costSavings.textContent = costSave.toFixed(2);
-  revenueIncreased.textContent = revenueInc.toFixed(2);
-  totalValue.textContent = totalPotential.toFixed(2);
+  costSavings.textContent = numberWithCommas(costSave.toFixed(2));
+  revenueIncreased.textContent = numberWithCommas(revenueInc.toFixed(2));
+  totalValue.textContent = numberWithCommas(totalPotential.toFixed(2));
 }
 
 function syncValues(e) {
@@ -41,6 +45,13 @@ function syncSliders(e) {
   calculateResults();
 }
 
+function updateInputs() {
+  numConsultantsInput.value = numConsultants.value;
+  avgSalaryInput.value = avgSalary.value;
+  timeToHireInput.value = timeToHire.value;
+  avgBillingsInput.value = avgBillings.value;
+}
+
 [numConsultants, avgSalary, timeToHire, avgBillings].forEach((slider) => {
   slider.addEventListener('input', syncValues);
 });
@@ -55,4 +66,5 @@ function syncSliders(e) {
 });
 
 // Initialize
+updateInputs();
 calculateResults();
